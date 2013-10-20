@@ -53,6 +53,9 @@ def main():
     bot_semillas_image = load_image('bot_semillas.png', True)
     bot_negros_image = load_image('bot_negros.png', True)
     bot_tierras_image = load_image('bot_tierras.png', True)
+    bot_manage_image = load_image('bot_manage.png', True)
+    bot_status_image = load_image('bot_status.png', True)
+    bot_minigame_image = load_image('bot_minigame.png', True)
     
     start = time.clock()
     tprod = start
@@ -120,6 +123,9 @@ def main():
         screen.blit(terreno_image, (10,165))
         screen.blit(bot_negros_image, (10,460))
         screen.blit(bot_tierras_image, (10,590))
+        screen.blit(bot_manage_image, (1085,5))
+        screen.blit(bot_status_image, (1085, 150))
+        screen.blit(bot_minigame_image, (1085, 320))
         pygame.display.flip()
     return 0
  
