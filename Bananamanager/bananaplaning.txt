@@ -1,0 +1,11 @@
+BANANA MANAGER:
+
+sistema de tiempo:
+dias, pago mensual
+
+
+dias = 10 sec
+semana = 7 dias
+mes = 4 semanas = 28 dias
+
+Capacidad maxima de bananas: mejorar contenedor
