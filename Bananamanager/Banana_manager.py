@@ -122,6 +122,7 @@ def main():
                         pantalla = 3
                 else:
                         pantalla = 0
+                anti_click = False
         if not mouse_boton[0]:
                 anti_click = True
         tiempo_actual, tiempo_actual_rect = texto(str(tiempo),320,240, 30)
