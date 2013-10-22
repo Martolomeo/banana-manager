@@ -1,3 +1,7 @@
+# Banana manager #
+##################
+save.txt
+
 # Compiled source #
 ###################
 *.com
