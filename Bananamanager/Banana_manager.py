@@ -38,6 +38,12 @@ def texto(texto, posx, posy, tamano, color=(0, 0, 0)):  #Porque los negros son i
     salida_rect.centerx = posx
     salida_rect.centery = posy
     return salida, salida_rect
+
+def borrar_archivo(string):
+        r = ""
+        for i in range(len(string)):
+                r += " "
+        return r
  
 # ---------------------------------------------------------------------
  
@@ -62,6 +68,7 @@ def main():
     pant_manage_image = load_image('Imagenes/pant_manage.png', True)
     
     start = time.clock()
+    save = open("save.txt", "r+")
     tprod = start
     turno = 0
     bananas = int(save.readline())
@@ -76,7 +83,6 @@ def main():
     mouse_boton = pygame.mouse.get_pressed()
     pos_mouse = pygame.mouse.get_pos()
     anti_click = True
-    print(save.readline())
     
     while True:
         mouse_boton = pygame.mouse.get_pressed()
@@ -87,11 +93,14 @@ def main():
                 mojon = "monotriste"
 
         if mojon == "monotriste":
-                save.seek(0)
-                save.write(str(bananas))
-                save.write(str(semillas))
-                save.write(str(negros))
+                save.close()
+                save = open("save.txt", "r+")
+                save.truncate()
+                save.write(str(bananas)+"\n")
+                save.write(str(semillas)+"\n")
+                save.write(str(negros)+"\n")
                 save.write(str(terrenos))
+                save.close()
                 break
 
         tiempo = int(time.clock() - start)
@@ -162,6 +171,7 @@ def main():
         screen.blit(bot_status_image, (1085, 150))
         screen.blit(bot_minigame_image, (1085, 320))
         pygame.display.flip()
+    save.close()
     return 0
  
 if __name__ == '__main__':
