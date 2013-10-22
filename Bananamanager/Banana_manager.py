@@ -6,6 +6,7 @@
 
 import pygame, time, random
 from pygame.locals import *
+save = open("save.txt", "r+")
  
 # Constantes
 
@@ -63,10 +64,10 @@ def main():
     start = time.clock()
     tprod = start
     turno = 0
-    bananas = 1000
-    semillas = 0
-    negros = 0
-    terrenos = 0
+    bananas = int(save.readline())
+    semillas = int(save.readline())
+    negros = int(save.readline())
+    terrenos = int(save.readline())
     produccion = 1
     salir = 0
     tiempo = 0
@@ -75,6 +76,7 @@ def main():
     mouse_boton = pygame.mouse.get_pressed()
     pos_mouse = pygame.mouse.get_pos()
     anti_click = True
+    print(save.readline())
     
     while True:
         mouse_boton = pygame.mouse.get_pressed()
@@ -85,6 +87,11 @@ def main():
                 mojon = "monotriste"
 
         if mojon == "monotriste":
+                save.seek(0)
+                save.write(str(bananas))
+                save.write(str(semillas))
+                save.write(str(negros))
+                save.write(str(terrenos))
                 break
 
         tiempo = int(time.clock() - start)
