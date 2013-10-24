@@ -67,13 +67,17 @@ def main():
     tprod = start
     tiempo = 0
     turno = 0
-    #Cosas del save
+    #Cosas del save / recursos - objetos
     save = open("save.txt", "r+")
     bananas = int(save.readline())
     semillas = int(save.readline())
     negros = int(save.readline())
     terrenos = int(save.readline())
-    produccion = 1
+    arboles = int(save.readline())
+    granjas = int(save.readline())
+    paises = int(save.readline())
+    mundos = int(save.readline())
+    produccion = 0
     #Para salir
     mojon = "banana"
     #Control de botones grandes
@@ -98,6 +102,8 @@ def main():
                 save.write(str(terrenos))
                 save.close()
                 break
+        #Cambiar producción
+        produccion = 1 + 2*arboles + 15*granjas + 100*paises + 5000*mundos
         #Entregar bananas
         tiempo = int(time.clock() - start)
         turno = int(time.clock() - tprod)
@@ -135,6 +141,30 @@ def main():
                 else:
                         pantalla = 0
                 anti_click = False
+        if mouse_boton[0] and 260 < pos_mouse[0] < 420 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 10 and negros >= 2 and terrenos >= 1:
+                arboles += 1
+                semillas -= 10
+                negros -= 2
+                terrenos -= 1
+                anti_click = False
+        if mouse_boton[0] and 470 < pos_mouse[0] < 640 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 50 and negros >= 5 and terrenos >= 5:
+                granjas += 1
+                semillas -= 50
+                negros -= 5
+                terrenos -= 5
+                anti_click = False
+        if mouse_boton[0] and 700 < pos_mouse[0] < 850 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 500 and negros >= 20 and terrenos >= 10:
+                paises += 1
+                semillas -= 500
+                negros -= 20
+                terrenos -= 10
+                anti_click = False
+        if mouse_boton[0] and 875 < pos_mouse[0] < 1025 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 5000 and negros >= 100 and terrenos >= 50:
+                mundos += 1
+                semillas -= 5000
+                negros -= 100
+                terrenos -= 50
+                anti_click = False
         if not mouse_boton[0]:
                 anti_click = True
         #Crear variables que cambian en pantalla
@@ -143,6 +173,10 @@ def main():
         semilla_usables, pos_semilla = texto(str(semillas), 120,100, 30)
         negro_usables, pos_negro = texto(str(negros), 120,150, 30)
         terreno_usables, pos_terreno = texto(str(terrenos), 120,200, 30)
+        arbol_usables, pos_arbol = texto(str(arboles), 290,385, 30)
+        granja_usables, pos_granja = texto(str(granjas), 520,385, 30)
+        pais_usables, pos_pais = texto(str(paises), 735,385, 30)
+        mundo_usables, pos_mundo = texto(str(mundos), 930,385, 30)
         #Dibuja en la pantalla las cosas en orden (más grandes primero)
         #Fondo (debe variar más adelante dependiendo de la cantidad de bananas)
         screen.blit(background_image, (0,0))
@@ -166,6 +200,12 @@ def main():
         screen.blit(negro_image, (10,115))
         screen.blit(terreno_usables, pos_terreno)
         screen.blit(terreno_image, (10,165))
+        #Propiedades / objetos
+        if pantalla == 3:
+                screen.blit(arbol_usables, pos_arbol)
+                screen.blit(granja_usables, pos_granja)
+                screen.blit(pais_usables, pos_pais)
+                screen.blit(mundo_usables, pos_mundo)
         #Botones del juego
         screen.blit(bot_semillas_image,(10,330))
         screen.blit(bot_negros_image, (10,460))
