@@ -61,6 +61,7 @@ def main():
     pant_status_image = load_image('Imagenes/pant_status.png', True)
     pant_minigame_image = load_image('Imagenes/pant_minigame.png', True)
     pant_manage_image = load_image('Imagenes/pant_manage.png', True)
+    cuanto_comprar_image = load_image('Imagenes/cant_compra.png', True)
 
     #Tiempo
     start = time.clock()
@@ -78,6 +79,7 @@ def main():
     paises = int(save.readline())
     mundos = int(save.readline())
     produccion = 0
+    cuanto = 0
     #Para salir
     mojon = "banana"
     #Control de botones grandes
@@ -100,14 +102,59 @@ def main():
                 tprod = time.clock()
         #Clickear botones (deberíamos crear una clase botón que reciba posicion y tenga método clickeable)
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 330 < pos_mouse[1] < 440 and bananas >= 10 and anti_click:
-                semillas += 1
-                bananas -= 10
-        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 460 < pos_mouse[1] < 570 and bananas >= 20 and anti_click:
-                negros += 1
-                bananas -= 20
-        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 590 < pos_mouse[1] < 700 and bananas >= 5 and anti_click:
-                terrenos += 1
-                bananas -= 5
+                if cuanto != 1:
+                        cuanto = 1
+                else:
+                        cuanto = 0
+        if cuanto == 1:
+                if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 340 < pos_mouse[1] < 370 and anti_click and bananas >= 10:
+                        bananas -= 10
+                        semillas += 1
+                if mouse_boton[0] and 280 < pos_mouse[0] < 310 and 340 < pos_mouse[1] < 370 and anti_click and bananas >= 100:
+                        bananas -= 100
+                        semillas += 10
+                if mouse_boton[0] and 220 < pos_mouse[0] < 260 and 390 < pos_mouse[1] < 420 and anti_click and bananas >= 1000:
+                        bananas -= 1000
+                        semillas += 100
+                if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 390 < pos_mouse[1] < 420 and anti_click and bananas >= 10000:
+                        bananas -= 10000
+                        semillas += 1000
+        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 460 < pos_mouse[1] < 570 and anti_click:
+                if cuanto != 2:
+                        cuanto = 2
+                else:
+                        cuanto = 0
+        if cuanto == 2:
+                if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 470 < pos_mouse[1] < 500 and anti_click and bananas >= 20:
+                        bananas -= 20
+                        negros += 1
+                if mouse_boton[0] and 280 < pos_mouse[0] < 310 and 470 < pos_mouse[1] < 500 and anti_click and bananas >= 200:
+                        bananas -= 200
+                        negros += 10
+                if mouse_boton[0] and 220 < pos_mouse[0] < 260 and 520 < pos_mouse[1] < 550 and anti_click and bananas >= 2000:
+                        bananas -= 2000
+                        negros += 100
+                if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 520 < pos_mouse[1] < 550 and anti_click and bananas >= 20000:
+                        bananas -= 20000
+                        negros += 1000
+        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 590 < pos_mouse[1] < 700 and anti_click:
+                if cuanto != 3:
+                        cuanto = 3
+                else:
+                        cuanto = 0
+        if cuanto == 3:
+                if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 600 < pos_mouse[1] < 630 and anti_click and bananas >= 5:
+                        bananas -= 5
+                        terrenos += 1
+                if mouse_boton[0] and 280 < pos_mouse[0] < 310 and 600 < pos_mouse[1] < 630 and anti_click and bananas >= 50:
+                        bananas -= 50
+                        terrenos += 10
+                if mouse_boton[0] and 220 < pos_mouse[0] < 260 and 650 < pos_mouse[1] < 680 and anti_click and bananas >= 500:
+                        bananas -= 500
+                        terrenos += 100
+                if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 650 < pos_mouse[1] < 680 and anti_click and bananas >= 5000:
+                        bananas -= 5000
+                        terrenos += 1000
         if mouse_boton[0] and 1085 < pos_mouse[0] < 1270 and 150 < pos_mouse[1] < 315 and anti_click:
                 if pantalla != 1:
                         pantalla = 1
@@ -188,8 +235,14 @@ def main():
                 screen.blit(mundo_usables, pos_mundo)
         #Botones del juego
         screen.blit(bot_semillas_image,(10,330))
+        if cuanto == 1:
+                screen.blit(cuanto_comprar_image, (190, 330))
         screen.blit(bot_negros_image, (10,460))
+        if cuanto == 2:
+                screen.blit(cuanto_comprar_image, (190,460))
         screen.blit(bot_tierras_image, (10,590))
+        if cuanto == 3:
+                screen.blit(cuanto_comprar_image, (190, 590))
         screen.blit(bot_manage_image, (1085,5))
         screen.blit(bot_status_image, (1085, 150))
         screen.blit(bot_minigame_image, (1085, 320))
