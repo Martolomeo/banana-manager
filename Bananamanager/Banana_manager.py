@@ -148,7 +148,7 @@ def main():
         if not mouse_boton[0]:
                 anti_click = True
         #Crear variables que cambian en pantalla
-        tiempo_actual, tiempo_actual_rect = texto(str(tiempo),320,240, 30)
+        tiempo_actual, pos_tiempo_actual = texto(str(tiempo),120,250, 30)
         banana_usables, pos_banana = texto(str(bananas), 120,50, 30)
         semilla_usables, pos_semilla = texto(str(semillas), 120,100, 30)
         negro_usables, pos_negro = texto(str(negros), 120,150, 30)
@@ -170,7 +170,7 @@ def main():
         if pantalla == 3:
                 screen.blit(pant_manage_image, (0,0))
         #Tiempo (inútil aún)
-        screen.blit(tiempo_actual, (260,600))
+        screen.blit(tiempo_actual, pos_tiempo_actual)
         #Recusos y sus imágenes
         screen.blit(banana_usables, pos_banana)
         screen.blit(banana_image, (10,5))
