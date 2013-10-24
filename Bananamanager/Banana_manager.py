@@ -102,56 +102,48 @@ def main():
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 330 < pos_mouse[1] < 440 and bananas >= 10 and anti_click:
                 semillas += 1
                 bananas -= 10
-                anti_click = False
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 460 < pos_mouse[1] < 570 and bananas >= 20 and anti_click:
                 negros += 1
                 bananas -= 20
-                anti_click = False
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 590 < pos_mouse[1] < 700 and bananas >= 5 and anti_click:
                 terrenos += 1
                 bananas -= 5
-                anti_click = False
         if mouse_boton[0] and 1085 < pos_mouse[0] < 1270 and 150 < pos_mouse[1] < 315 and anti_click:
                 if pantalla != 1:
                         pantalla = 1
                 else:
                         pantalla = 0
-                anti_click = False
         if mouse_boton[0] and 1085 < pos_mouse[0] < 1270 and 325 < pos_mouse[1] < 465 and anti_click:
                 if pantalla != 2:
                         pantalla = 2
                 else:
                         pantalla = 0
-                anti_click = False
         if mouse_boton[0] and 1085 < pos_mouse[0] < 1270 and  10 < pos_mouse[1] < 140 and anti_click:
                 if pantalla != 3:
                         pantalla = 3
                 else:
                         pantalla = 0
-                anti_click = False
         if mouse_boton[0] and 260 < pos_mouse[0] < 420 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 10 and negros >= 2 and terrenos >= 1:
                 arboles += 1
                 semillas -= 10
                 negros -= 2
                 terrenos -= 1
-                anti_click = False
         if mouse_boton[0] and 470 < pos_mouse[0] < 640 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 50 and negros >= 5 and terrenos >= 5:
                 granjas += 1
                 semillas -= 50
                 negros -= 5
                 terrenos -= 5
-                anti_click = False
         if mouse_boton[0] and 700 < pos_mouse[0] < 850 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 500 and negros >= 20 and terrenos >= 10:
                 paises += 1
                 semillas -= 500
                 negros -= 20
                 terrenos -= 10
-                anti_click = False
         if mouse_boton[0] and 875 < pos_mouse[0] < 1025 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 5000 and negros >= 100 and terrenos >= 50:
                 mundos += 1
                 semillas -= 5000
                 negros -= 100
                 terrenos -= 50
+        if mouse_boton[0] and anti_click:
                 anti_click = False
         if not mouse_boton[0]:
                 anti_click = True
