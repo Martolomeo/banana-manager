@@ -106,6 +106,7 @@ def main():
                         cuanto = 1
                 else:
                         cuanto = 0
+                anti_click = False #tiene que ir acá para que funcione (1)
         if cuanto == 1:
                 if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 340 < pos_mouse[1] < 370 and anti_click and bananas >= 10:
                         bananas -= 10
@@ -119,11 +120,14 @@ def main():
                 if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 390 < pos_mouse[1] < 420 and anti_click and bananas >= 10000:
                         bananas -= 10000
                         semillas += 1000
+                if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 330 < pos_mouse[1] < 435) and anti_click: #(1)
+                        cuanto = 0
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 460 < pos_mouse[1] < 570 and anti_click:
                 if cuanto != 2:
                         cuanto = 2
                 else:
                         cuanto = 0
+                anti_click = False #tiene que ir acá para que funcione (2)
         if cuanto == 2:
                 if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 470 < pos_mouse[1] < 500 and anti_click and bananas >= 20:
                         bananas -= 20
@@ -137,11 +141,14 @@ def main():
                 if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 520 < pos_mouse[1] < 550 and anti_click and bananas >= 20000:
                         bananas -= 20000
                         negros += 1000
+                if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 460 < pos_mouse[1] < 565) and anti_click: #(2)
+                        cuanto = 0
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 590 < pos_mouse[1] < 700 and anti_click:
                 if cuanto != 3:
                         cuanto = 3
                 else:
                         cuanto = 0
+                anti_click = False #tiene que ir acá para que funcione (3)
         if cuanto == 3:
                 if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 600 < pos_mouse[1] < 630 and anti_click and bananas >= 5:
                         bananas -= 5
@@ -155,6 +162,8 @@ def main():
                 if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 650 < pos_mouse[1] < 680 and anti_click and bananas >= 5000:
                         bananas -= 5000
                         terrenos += 1000
+                if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 590 < pos_mouse[1] < 695) and anti_click: #(3)
+                        cuanto = 0
         if mouse_boton[0] and 1085 < pos_mouse[0] < 1270 and 150 < pos_mouse[1] < 315 and anti_click:
                 if pantalla != 1:
                         pantalla = 1
