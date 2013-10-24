@@ -6,7 +6,6 @@
 
 import pygame, time, random
 from pygame.locals import *
-save = open("save.txt", "r+")
  
 # Constantes
 
@@ -21,6 +20,7 @@ HEIGHT = 700
 # Funciones
 # ---------------------------------------------------------------------
 
+#Para cargar imágenes (aunque no lo crean)
 def load_image(filename, transparent=False):
         try: image = pygame.image.load(filename)
         except pygame.error, message:
@@ -31,6 +31,7 @@ def load_image(filename, transparent=False):
                 image.set_colorkey(color, RLEACCEL)
         return image
 
+#Para hacer un texto que cambia en pantalla
 def texto(texto, posx, posy, tamano, color=(0, 0, 0)):  #Porque los negros son inferiores
     fuente = pygame.font.Font("DroidSans.ttf", tamano)
     salida = pygame.font.Font.render(fuente, texto, 1, color)
@@ -38,12 +39,6 @@ def texto(texto, posx, posy, tamano, color=(0, 0, 0)):  #Porque los negros son i
     salida_rect.centerx = posx
     salida_rect.centery = posy
     return salida, salida_rect
-
-def borrar_archivo(string):
-        r = ""
-        for i in range(len(string)):
-                r += " "
-        return r
  
 # ---------------------------------------------------------------------
  
@@ -66,49 +61,50 @@ def main():
     pant_status_image = load_image('Imagenes/pant_status.png', True)
     pant_minigame_image = load_image('Imagenes/pant_minigame.png', True)
     pant_manage_image = load_image('Imagenes/pant_manage.png', True)
-    
+
+    #Tiempo
     start = time.clock()
-    save = open("save.txt", "r+")
     tprod = start
+    tiempo = 0
     turno = 0
+    #Cosas del save
+    save = open("save.txt", "r+")
     bananas = int(save.readline())
     semillas = int(save.readline())
     negros = int(save.readline())
     terrenos = int(save.readline())
     produccion = 1
-    salir = 0
-    tiempo = 0
+    #Para salir
     mojon = "banana"
+    #Control de botones grandes
     pantalla = 0
+    #Cosas de mouse
     mouse_boton = pygame.mouse.get_pressed()
     pos_mouse = pygame.mouse.get_pos()
     anti_click = True
     
     while True:
+        #Para salir del juego
         mouse_boton = pygame.mouse.get_pressed()
         pos_mouse = pygame.mouse.get_pos()
         for eventos in pygame.event.get():
             if eventos.type == QUIT:
                 pygame.display.quit()
-                mojon = "monotriste"
-
-        if mojon == "monotriste":
                 save.close()
-                save = open("save.txt", "r+")
-                save.truncate()
+                save = open("save.txt", "w",encoding="utf8")
                 save.write(str(bananas)+"\n")
                 save.write(str(semillas)+"\n")
                 save.write(str(negros)+"\n")
                 save.write(str(terrenos))
                 save.close()
                 break
-
+        #Entregar bananas
         tiempo = int(time.clock() - start)
         turno = int(time.clock() - tprod)
         if turno == 1:
                 bananas += produccion
                 tprod = time.clock()
-
+        #Clickear botones (deberíamos crear una clase botón que reciba posicion y tenga método clickeable)
         if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 330 < pos_mouse[1] < 440 and bananas >= 10 and anti_click:
                 semillas += 1
                 bananas -= 10
@@ -141,22 +137,27 @@ def main():
                 anti_click = False
         if not mouse_boton[0]:
                 anti_click = True
+        #Crear variables que cambian en pantalla
         tiempo_actual, tiempo_actual_rect = texto(str(tiempo),320,240, 30)
         banana_usables, pos_banana = texto(str(bananas), 120,50, 30)
         semilla_usables, pos_semilla = texto(str(semillas), 120,100, 30)
         negro_usables, pos_negro = texto(str(negros), 120,150, 30)
         terreno_usables, pos_terreno = texto(str(terrenos), 120,200, 30)
-
+        #Dibuja en la pantalla las cosas en orden (más grandes primero)
+        #Fondo (debe variar más adelante dependiendo de la cantidad de bananas)
         screen.blit(background_image, (0,0))
+        #Banana banner holy shit
+        screen.blit(banner_image, (780, 536))
+        #Imagenes de botones que hacen aparecer pantallas
         if pantalla == 1:
                 screen.blit(pant_status_image, (0,0))
         if pantalla == 2:
                 screen.blit(pant_minigame_image, (0,0))
         if pantalla == 3:
                 screen.blit(pant_manage_image, (0,0))
-        screen.blit(bot_semillas_image,(10,330))
-        screen.blit(banner_image, (780, 536))
+        #Tiempo (inútil aún)
         screen.blit(tiempo_actual, (260,600))
+        #Recusos y sus imágenes
         screen.blit(banana_usables, pos_banana)
         screen.blit(banana_image, (10,5))
         screen.blit(semilla_usables, pos_semilla)
@@ -165,11 +166,14 @@ def main():
         screen.blit(negro_image, (10,115))
         screen.blit(terreno_usables, pos_terreno)
         screen.blit(terreno_image, (10,165))
+        #Botones del juego
+        screen.blit(bot_semillas_image,(10,330))
         screen.blit(bot_negros_image, (10,460))
         screen.blit(bot_tierras_image, (10,590))
         screen.blit(bot_manage_image, (1085,5))
         screen.blit(bot_status_image, (1085, 150))
         screen.blit(bot_minigame_image, (1085, 320))
+        #Muestra en pantalla lo dibujado
         pygame.display.flip()
     save.close()
     return 0
