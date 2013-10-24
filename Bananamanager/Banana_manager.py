@@ -68,7 +68,7 @@ def main():
     tiempo = 0
     turno = 0
     #Cosas del save
-    save = open("save.txt", "r+")
+    save = open("save.txt", "r")
     bananas = int(save.readline())
     semillas = int(save.readline())
     negros = int(save.readline())
