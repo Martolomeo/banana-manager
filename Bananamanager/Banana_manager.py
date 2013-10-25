@@ -5,6 +5,7 @@
 # Módulos
 
 import pygame, time, random
+
 from pygame.locals import *
  
 # Constantes
@@ -14,6 +15,16 @@ HEIGHT = 700
  
 # Clases
 # ---------------------------------------------------------------------
+
+class Boton:
+        def __init__(self, posx1, posx2, posy1, posy2):
+                self.posx1 = posx1
+                self.posx2 = posx2
+                self.posy1 = posy1
+                self.posy2 = posy2
+        def click(self,pos, anti_click, boton):
+                if self.posx1 < pos[0] < self.posx2 and self.posy1 < pos[1] < self.posy2 and boton and anti_click:
+                        return True
  
 # ---------------------------------------------------------------------
  
@@ -88,6 +99,10 @@ def main():
     mouse_boton = pygame.mouse.get_pressed()
     pos_mouse = pygame.mouse.get_pos()
     anti_click = True
+    #Botones
+    cuanto1 = Boton(10,190,330,440)
+    cuanto2 = Boton(10,190,460,570)
+    cuanto3 = Boton(10,190,590,700)
     
     while mojon == "banana":
         mouse_boton = pygame.mouse.get_pressed()
@@ -101,7 +116,7 @@ def main():
                 bananas += produccion
                 tprod = time.clock()
         #Clickear botones (deberíamos crear una clase botón que reciba posicion y tenga método clickeable)
-        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 330 < pos_mouse[1] < 440 and bananas >= 10 and anti_click:
+        if cuanto1.click(pos_mouse, anti_click, mouse_boton[0]):
                 if cuanto != 1:
                         cuanto = 1
                 else:
@@ -122,7 +137,7 @@ def main():
                         semillas += 1000
                 if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 330 < pos_mouse[1] < 435) and anti_click: #(1)
                         cuanto = 0
-        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 460 < pos_mouse[1] < 570 and anti_click:
+        if cuanto2.click(pos_mouse, anti_click, mouse_boton[0]):
                 if cuanto != 2:
                         cuanto = 2
                 else:
@@ -143,7 +158,7 @@ def main():
                         negros += 1000
                 if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 460 < pos_mouse[1] < 565) and anti_click: #(2)
                         cuanto = 0
-        if mouse_boton[0] and 10 < pos_mouse[0] < 190 and 590 < pos_mouse[1] < 700 and anti_click:
+        if cuanto3.click(pos_mouse, anti_click, mouse_boton[0]):
                 if cuanto != 3:
                         cuanto = 3
                 else:
