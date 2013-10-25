@@ -201,6 +201,16 @@ def main():
                 terrenos -= 50
         if mouse_boton[0] and anti_click:
                 anti_click = False
+        if mouse_boton[0] and 810 < pos_mouse[0] < 1000 and 350 < pos_mouse[1] < 440 and pantalla == 1:
+                bananas = 0
+                terrenos = 0
+                semillas = 0
+                negros = 0
+                arboles = 0
+                granjas = 0
+                paises = 0
+                mundos = 0
+                produccion  = 1
         if not mouse_boton[0]:
                 anti_click = True
         #Crear variables que cambian en pantalla
