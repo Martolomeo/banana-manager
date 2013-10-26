@@ -4,6 +4,7 @@ class Boton:
                 self.posx2 = posx2
                 self.posy1 = posy1
                 self.posy2 = posy2
-        def click(self,posx,posy):
-                if self.posx1 < posx < self.posx2 and self.posy1 < posy < self.posy2:
+        def click(self,pos, anti_click, boton):
+                if self.posx1 < pos[0] < self.posx2 and self.posy1 < pos[1] < self.posy2 and boton and anti_click:
                         return True
+class Arbol
