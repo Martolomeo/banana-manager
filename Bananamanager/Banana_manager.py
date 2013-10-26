@@ -120,7 +120,7 @@ def main():
                         cuanto = 0
                 anti_click = False #tiene que ir acá para que funcione (1)
         if cuanto == 1:
-                bananas,semillas,cuanto = cuanto1.clickbananas(pos_mouse,mouse_boton,anti_click,precio_semillas,semillas,bananas,cuanto)
+               bananas,semillas,cuanto= cuanto1.clickbananas(pos_mouse,mouse_boton,anti_click,precio_semillas,semillas,bananas,cuanto)
         if cuanto2.click(pos_mouse, anti_click, mouse_boton[0]):
                 if cuanto != 2:
                         cuanto = 2
