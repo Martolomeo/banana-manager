@@ -43,7 +43,7 @@ def load_image(filename, transparent=False):
         return image
 
 #Para hacer un texto que cambia en pantalla
-def texto(texto, posx, posy, tamano, color=(0, 0, 0)):  #Porque los negros son inferiores
+def texto(texto, posx, posy, tamano, color=(0, 0, 0)):  #Porque los monos son inferiores
     fuente = pygame.font.Font("DroidSans.ttf", tamano)
     salida = pygame.font.Font.render(fuente, texto, 1, color)
     salida_rect = salida.get_rect()
@@ -61,10 +61,10 @@ def main():
     banana_image = load_image('Imagenes/banana.png', True)
     banner_image = load_image('Imagenes/banner.png', True)
     semilla_image = load_image('Imagenes/semilla.png', True)
-    negro_image = load_image('Imagenes/negro.png', True)
+    mono_image = load_image('Imagenes/mono.png', True)
     terreno_image = load_image('Imagenes/terreno.png', True)
     bot_semillas_image = load_image('Imagenes/bot_semillas.png', True)
-    bot_negros_image = load_image('Imagenes/bot_negros.png', True)
+    bot_monos_image = load_image('Imagenes/bot_monos.png', True)
     bot_tierras_image = load_image('Imagenes/bot_tierras.png', True)
     bot_manage_image = load_image('Imagenes/bot_manage.png', True)
     bot_status_image = load_image('Imagenes/bot_status.png', True)
@@ -83,7 +83,7 @@ def main():
     save = open("save.txt", "r")
     bananas = int(save.readline())
     semillas = int(save.readline())
-    negros = int(save.readline())
+    monos = int(save.readline())
     terrenos = int(save.readline())
     arboles = int(save.readline())
     granjas = int(save.readline())
@@ -146,16 +146,16 @@ def main():
         if cuanto == 2:
                 if mouse_boton[0] and 220 < pos_mouse[0] < 240 and 470 < pos_mouse[1] < 500 and anti_click and bananas >= 20:
                         bananas -= 20
-                        negros += 1
+                        monos += 1
                 if mouse_boton[0] and 280 < pos_mouse[0] < 310 and 470 < pos_mouse[1] < 500 and anti_click and bananas >= 200:
                         bananas -= 200
-                        negros += 10
+                        monos += 10
                 if mouse_boton[0] and 220 < pos_mouse[0] < 260 and 520 < pos_mouse[1] < 550 and anti_click and bananas >= 2000:
                         bananas -= 2000
-                        negros += 100
+                        monos += 100
                 if mouse_boton[0] and 275 < pos_mouse[0] < 325 and 520 < pos_mouse[1] < 550 and anti_click and bananas >= 20000:
                         bananas -= 20000
-                        negros += 1000
+                        monos += 1000
                 if mouse_boton[0] and (not 200 < pos_mouse[0] < 340 or not 460 < pos_mouse[1] < 565) and anti_click: #(2)
                         cuanto = 0
         if cuanto3.click(pos_mouse, anti_click, mouse_boton[0]):
@@ -194,25 +194,25 @@ def main():
                         pantalla = 3
                 else:
                         pantalla = 0
-        if mouse_boton[0] and 260 < pos_mouse[0] < 420 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 10 and negros >= 2 and terrenos >= 1:
+        if mouse_boton[0] and 260 < pos_mouse[0] < 420 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 10 and monos >= 2 and terrenos >= 1:
                 arboles += 1
                 semillas -= 10
-                negros -= 2
+                monos -= 2
                 terrenos -= 1
-        if mouse_boton[0] and 470 < pos_mouse[0] < 640 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 50 and negros >= 5 and terrenos >= 5:
+        if mouse_boton[0] and 470 < pos_mouse[0] < 640 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 50 and monos >= 5 and terrenos >= 5:
                 granjas += 1
                 semillas -= 50
-                negros -= 5
+                monos -= 5
                 terrenos -= 5
-        if mouse_boton[0] and 700 < pos_mouse[0] < 850 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 500 and negros >= 20 and terrenos >= 10:
+        if mouse_boton[0] and 700 < pos_mouse[0] < 850 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 500 and monos >= 20 and terrenos >= 10:
                 paises += 1
                 semillas -= 500
-                negros -= 20
+                monos -= 20
                 terrenos -= 10
-        if mouse_boton[0] and 875 < pos_mouse[0] < 1025 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 5000 and negros >= 100 and terrenos >= 50:
+        if mouse_boton[0] and 875 < pos_mouse[0] < 1025 and 35 < pos_mouse[1] < 105 and anti_click and pantalla == 3 and semillas >= 5000 and monos >= 100 and terrenos >= 50:
                 mundos += 1
                 semillas -= 5000
-                negros -= 100
+                monos -= 100
                 terrenos -= 50
         if mouse_boton[0] and anti_click:
                 anti_click = False
@@ -220,7 +220,7 @@ def main():
                 bananas = 0
                 terrenos = 0
                 semillas = 0
-                negros = 0
+                monos = 0
                 arboles = 0
                 granjas = 0
                 paises = 0
@@ -232,7 +232,7 @@ def main():
         tiempo_actual, pos_tiempo_actual = texto(str(tiempo),120,250, 30)
         banana_usables, pos_banana = texto(str(bananas), 120,50, 30)
         semilla_usables, pos_semilla = texto(str(semillas), 120,100, 30)
-        negro_usables, pos_negro = texto(str(negros), 120,150, 30)
+        mono_usables, pos_mono = texto(str(monos), 120,150, 30)
         terreno_usables, pos_terreno = texto(str(terrenos), 120,200, 30)
         arbol_usables, pos_arbol = texto(str(arboles), 290,385, 30)
         granja_usables, pos_granja = texto(str(granjas), 520,385, 30)
@@ -257,8 +257,8 @@ def main():
         screen.blit(banana_image, (10,5))
         screen.blit(semilla_usables, pos_semilla)
         screen.blit(semilla_image, (10,65))
-        screen.blit(negro_usables, pos_negro)
-        screen.blit(negro_image, (10,115))
+        screen.blit(mono_usables, pos_mono)
+        screen.blit(mono_image, (10,115))
         screen.blit(terreno_usables, pos_terreno)
         screen.blit(terreno_image, (10,165))
         #Propiedades / objetos
@@ -271,7 +271,7 @@ def main():
         screen.blit(bot_semillas_image,(10,330))
         if cuanto == 1:
                 screen.blit(cuanto_comprar_image, (190, 330))
-        screen.blit(bot_negros_image, (10,460))
+        screen.blit(bot_monos_image, (10,460))
         if cuanto == 2:
                 screen.blit(cuanto_comprar_image, (190,460))
         screen.blit(bot_tierras_image, (10,590))
@@ -290,7 +290,7 @@ def main():
                 save = open("save.txt", "w")
                 save.write(str(bananas)+"\n")
                 save.write(str(semillas)+"\n")
-                save.write(str(negros)+"\n")
+                save.write(str(monos)+"\n")
                 save.write(str(terrenos)+"\n")
                 save.write(str(arboles)+"\n")
                 save.write(str(granjas)+"\n")
