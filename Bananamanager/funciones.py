@@ -15,4 +15,3 @@ def determinar_pantalla(pos,mouse,anti_click,pantalla):
             else:
                 pantalla = 0
     return pantalla
-    

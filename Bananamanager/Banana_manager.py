@@ -48,7 +48,7 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Banana manager")
 
-    background_image = load_image('Imagenes/fondo.png')
+    background_image = load_image('Imagenes/fondo2.png')
     banana_image = load_image('Imagenes/banana.png', True)
     banner_image = load_image('Imagenes/banner.png', True)
     semilla_image = load_image('Imagenes/semilla.png', True)
@@ -99,6 +99,11 @@ def main():
     precio_semillas = 10
     precio_negros = 20
     precio_terrenos = 5
+    #Calendario
+    Mes=0
+    Dia_anterior=0
+    Anho = 2013
+    Meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
     while mojon == "banana":
         mouse_boton = pygame.mouse.get_pressed()
         pos_mouse = pygame.mouse.get_pos()
@@ -171,7 +176,18 @@ def main():
                 produccion  = 1
         if not mouse_boton[0]:
                 anti_click = True
-        #Crear variables que cambian en pantalla
+        #TIEMPO
+        Dias = tiempo //7 + 1 
+        if Dias == 30:
+                Dias-=30
+                Mes+=1
+        if Mes == 11:
+                Mes = 0
+                Anho+=1
+        dia_actual, pos_dia = texto(str(Dias),330,665,30)
+        mes_actual, pos_mes = texto(str(Meses[Mes]),440,665,30)
+        anho_actual, pos_anho = texto(str(Anho),555,665,30)
+        #Crear variables que cambian en pantalla                
         tiempo_actual, pos_tiempo_actual = texto(str(tiempo),120,250, 30)
         banana_usables, pos_banana = texto(str(bananas), 120,50, 30)
         semilla_usables, pos_semilla = texto(str(semillas), 120,100, 30)
@@ -194,6 +210,11 @@ def main():
         if pantalla == 3:
                 screen.blit(pant_manage_image, (0,0))
         #Tiempo (inútil aún)
+        #if (Dias - Dia_anterior)== 1:
+        Dia_anterior = Dias
+        screen.blit(dia_actual,pos_dia)
+        screen.blit(mes_actual,pos_mes)
+        screen.blit(anho_actual,pos_anho)
         screen.blit(tiempo_actual, pos_tiempo_actual)
         #Recusos y sus imágenes
         screen.blit(banana_usables, pos_banana)
