@@ -254,7 +254,7 @@ def main():
         screen.blit(tiempo_actual, pos_tiempo_actual)
         #Recusos y sus imágenes
         screen.blit(banana_usables, pos_banana)
-        screen.blit(banana_image, (10,5))
+        screen.blit(banana_image, (20,15))
         screen.blit(semilla_usables, pos_semilla)
         screen.blit(semilla_image, (10,65))
         screen.blit(mono_usables, pos_mono)
