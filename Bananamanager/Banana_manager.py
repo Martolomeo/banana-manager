@@ -177,13 +177,7 @@ def main():
         if not mouse_boton[0]:
                 anti_click = True
         #TIEMPO
-        Dias = tiempo //7 + 1 
-        if Dias == 30:
-                Dias-=30
-                Mes+=1
-        if Mes == 11:
-                Mes = 0
-                Anho+=1
+        Dias,Mes,Anho = obtener_hora(tiempo,Anho)
         dia_actual, pos_dia = texto(str(Dias),330,665,30)
         mes_actual, pos_mes = texto(str(Meses[Mes]),440,665,30)
         anho_actual, pos_anho = texto(str(Anho),555,665,30)
@@ -210,8 +204,6 @@ def main():
         if pantalla == 3:
                 screen.blit(pant_manage_image, (0,0))
         #Tiempo (inútil aún)
-        #if (Dias - Dia_anterior)== 1:
-        Dia_anterior = Dias
         screen.blit(dia_actual,pos_dia)
         screen.blit(mes_actual,pos_mes)
         screen.blit(anho_actual,pos_anho)

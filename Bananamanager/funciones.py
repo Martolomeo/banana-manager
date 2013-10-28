@@ -15,3 +15,14 @@ def determinar_pantalla(pos,mouse,anti_click,pantalla):
             else:
                 pantalla = 0
     return pantalla
+def obtener_hora(tiempo,Anho):
+    Dia = tiempo //7 +1
+    Mes = 0
+    while Dia > 30:
+        if Dia > 30:
+            Dia-=30
+            Mes+=1
+        if Mes > 11:
+            Mes-=11
+            Anho+=1
+    return Dia,Mes,Anho
